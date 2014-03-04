@@ -1,6 +1,10 @@
 package com.example.demo2s2.activities;
 
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Hashtable;
 
 import android.content.res.Configuration;
@@ -12,19 +16,23 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.example.demo2s2.R;
 import com.example.demo2s2.data.Tienda;
-import com.example.demo2s2.fragments.AboutFragment;
 import com.example.demo2s2.fragments.ComunidadFragment;
 import com.example.demo2s2.fragments.CountriesContentFragment;
 import com.example.demo2s2.fragments.CountriesFlagFragment;
-import com.example.demo2s2.fragments.FlagFragment;
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 
 public class MainActivity extends ActionBarActivity {
 	private ListView drawerList;
@@ -35,16 +43,28 @@ public class MainActivity extends ActionBarActivity {
 			new CountriesFlagFragment(), new CountriesContentFragment(), (Fragment) new ComunidadFragment()
 	};
 	
-	public static Tienda tienda1 = new Tienda("Mall Guatemala", "Ciudad de Guatemala","2388-5600", "8:00AM - 5:00PM", "www.tienda1.com", "tienda1@tienda.com");
+	public static String nombretienda = "";
+	public static String direcciontienda = "";
+	public static String telefonotienda = "";
+	public static String horariotienda = "";
+	public static String urltienda = "";
+	public static String emailtienda = "";
+	
+	
+	public static Tienda tienda1;
 	public static Tienda tienda2 = new Tienda("Mall Mixco", "Ciudad de Mixco","2388-5601", "8:00AM - 5:00PM", "www.tienda2.com", "tienda2@tienda.com");
 	public static Tienda tienda3 = new Tienda("Mall Villanueva", "Ciudad de Villanueva","2388-5602", "8:00AM - 6:00PM", "www.tienda3.com", "tienda3@tienda.com");
 	
 	public static final Hashtable<String, Tienda> tiendastarea1 = new Hashtable<String, Tienda>();
 
-	
+	public static RequestQueue requestqueue1;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
+		requestqueue1 = Volley.newRequestQueue(this);
+		
+		
 		setContentView(R.layout.activity_main);	
 		
 		drawerList = (ListView) findViewById(R.id.leftDrawer);
@@ -90,6 +110,15 @@ public class MainActivity extends ActionBarActivity {
 								  .commit();
 		
 	
+		try {
+			APICall();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		tienda1 = new Tienda(nombretienda, direcciontienda,telefonotienda, horariotienda, urltienda,emailtienda);
+		
 	}
 	
 	public void setContent (int index){
@@ -173,4 +202,130 @@ public class MainActivity extends ActionBarActivity {
 		}
 		
 	}
+	
+	private void APICall() throws IOException {
+		StringBuilder buf=new StringBuilder();
+	    InputStream json=getAssets().open("contents.json");
+	    BufferedReader in=
+	        new BufferedReader(new InputStreamReader(json));
+	    String str;
+
+	    while ((str=in.readLine()) != null) {
+	      buf.append(str);
+	    }
+
+	    in.close();
+		
+	    String m = buf.toString();
+	    
+		
+		
+		JsonFactory f = new JsonFactory();
+		JsonParser jp  = f.createJsonParser(m);
+		jp.nextToken();
+		
+		
+		
+		while (jp.nextToken() != JsonToken.END_OBJECT) {
+			String fieldname = jp.getCurrentName();
+			jp.nextToken(); 
+			 
+			
+					Log.e("dondevoy", fieldname);
+					if(fieldname.equals("type")){
+					
+						
+						
+					}
+					if(fieldname.equals("name")){
+						nombretienda = jp.getText();
+						
+						
+					}
+					if(fieldname.equals("direccion")){
+						direcciontienda = jp.getText();
+						
+						
+					}
+					if(fieldname.equals("telefono")){
+						
+						telefonotienda = jp.getText();
+						
+						
+					}
+					if(fieldname.equals("horario")){
+						
+						horariotienda = jp.getText();
+						
+						
+					}
+					if(fieldname.equals("url")){
+						
+						urltienda = jp.getText();
+						
+						
+					}
+					if(fieldname.equals("email")){
+						
+						emailtienda = jp.getText();
+						
+						
+					}
+				
+				
+				
+			
+		}
+		jp.close();
+		
+		Log.e("json_final", nombretienda);
+		/*// TODO Auto-generated method stub
+		//String url = Helper.getRecentMediaUrl("lego");
+		
+		Uri uri = Uri.parse("android.resource://" + getPackageName()
+                + "/assets/" + "mydemo.txt");
+		String url = uri.toString();
+		Log.e("envio", url);
+		
+
+		
+		
+		Response.Listener<JSONObject> listener = new Response.Listener<JSONObject>(){
+
+			@Override
+			public void onResponse(JSONObject arg0) {
+				
+				Log.e("entre", "entre");
+				
+				JSONArray data;
+				try{
+					data = arg0.getJSONArray("store");
+					for(int i = 0; i< data.length(); i++){
+						JSONObject element = data.getJSONObject(i);
+						String type = element.getString("type");
+						if(type.equals("name")){
+							
+							
+							String userName = element.getString("name");
+							
+							Log.e("username", userName);
+					}
+					}
+					
+				}catch (JSONException e){
+					Log.e("ERROR", Log.getStackTraceString(e));
+				}
+				
+			}
+			
+		};
+		
+		
+		JsonObjectRequest request = new JsonObjectRequest(com.android.volley.Request.Method.GET, 
+								url, null, listener, null);
+		
+		requestqueue1.add(request);
+		
+		*/
+	} 
 }

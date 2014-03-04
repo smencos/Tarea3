@@ -5,6 +5,7 @@ import com.example.demo2s2.R.id;
 import com.example.demo2s2.R.layout;
 import com.example.demo2s2.R.menu;
 import com.example.demo2s2.R.string;
+import com.example.demo2s2.data.GetData;
 import com.example.demo2s2.data.Tienda;
 
 import android.content.Intent;

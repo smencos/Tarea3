@@ -1,0 +1,8 @@
+{"type" : "store",
+  "name" :  "Mall Guatemala" ,
+  "direccion" : "Ciudad de Guatemala",
+  "telefono" : "2388-5600",
+  "horario" : "8:00AM - 5:00PM",
+  "url" : "www.tienda1.com",
+  "email" : "tienda1@tienda.com"
+}

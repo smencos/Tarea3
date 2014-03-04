@@ -5,6 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,12 +19,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.demo2s2.R;
+import com.example.demo2s2.data.Helper;
 
 public class CameraActivity extends Activity implements OnClickListener {
 
@@ -29,6 +38,7 @@ public class CameraActivity extends Activity implements OnClickListener {
 	Button btnFromGallery;
 	Button btnFromCamera;
 	String photoPath;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -158,4 +168,5 @@ public class CameraActivity extends Activity implements OnClickListener {
 		return image;
 	}
 
+	
 }
