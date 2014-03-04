@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tarea3</string>
+    <string name="action_help">Ayuda</string>
+    <string name="action_share">Compartir</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="msg_share">Te comparto la informacion de %1$s %2$s</string>
+    <string name="title_fragment_list">Listado</string>
+    <string name="title_fragment_flags">Mapa</string>
+    <string name="title_activity_country_detail">Tienda</string>
+    <string name="title_image_country_detail">Imagen</string>
+	<string name="msg_about">Esto fue desarrollado para el curso de seminario profesional 1</string>
+	<string name="drawer_open">Abrir</string>
+	<string name="drawer_close">Cerrar</string>
+	    <string name="btn_photo">Fotografía!</string>
+	
+	    <string name="msg_yes">Si!</string>
+    <string name="msg_no">No!</string>
+	<string-array name = "drawer_options">
+	    <item >Imagenes</item>
+	   |<item >Tienda</item>
+	   |<item >Comunidad</item>
+	</string-array>
+</resources>

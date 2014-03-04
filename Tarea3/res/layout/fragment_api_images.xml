@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:paddingBottom="20dp"
+        android:gravity="center"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/buttonAPI"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="FOTO" />
+        
+        <TextView
+                android:id="@+id/commentAPI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="viewEnd"
+                 android:layout_weight="1"
+                android:text="@string/hello_world" />
+
+        
+    </LinearLayout>
+
+    
+    
+    <GridView
+        android:id="@+id/grid"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="2" >
+    </GridView>
+
+</LinearLayout>

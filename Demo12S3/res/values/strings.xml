@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Demo1S3</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="btn_photo">Fotografía!</string>
+    <string name="btn_update">Aceder a API!</string>
+    <string name="btn_from_gallery">Desde la galeria</string>
+     <string name="btn_from_camera">Desde la camara</string>
+    <string name="msg_yes">Si!</string>
+    <string name="msg_no">No!</string>
+    <string name="txt_notif_title">Carga de datos concluida</string>
+    <string name="txt_notif_subtitle">Click aqui para tomar fotos</string>
+    <string name="title_activity_camera">CameraActivity</string>
+
+</resources>
